@@ -1,0 +1,45 @@
+# RNAseq-QC
+
+A scalable, configuration-driven Python tool to calculate the proportion of RNA-seq reads mapped to ribosomal RNA (rRNA) genes using featureCounts matrices.
+
+## Overview
+This tool automates the process of fetching standard rRNA gene lists from the Ensembl BioMart database for any specified species, and calculating the percentage of mapped reads that align to these genes. This helps in assessing the efficiency of ribosomal depletion or polyA-selection during RNA sequencing quality control.
+
+## Features
+- Dynamic fetching of rRNA gene lists using BioMart
+- Support for multiple species simultaneously 
+- Accepts standard `featureCounts` gene-expression matrices as input
+- Configuration-driven structure via simple YAML files
+- Outputs a clean multi-sheet `.xlsx` summary
+
+## Dependencies
+Ensure you have the following installed:
+- `pandas`
+- `openpyxl`
+- `pyyaml`
+
+You can install them via pip:
+```bash
+pip install pandas openpyxl pyyaml
+```
+
+## Usage
+Simply define your matrix inputs and desired target species in a YAML configuration file, then execute the script:
+```bash
+python calc_rrna_proportions.py config_template.yaml
+```
+
+### Configuration File Template
+Define an arbitrary number of species and matrix files under `runs`. Each requires the exact `biomart_dataset` string (e.g., `hsapiens_gene_ensembl`, `mmusculus_gene_ensembl`, `cporcellus_gene_ensembl`).
+
+```yaml
+output_file: /path/to/output/rRNA_mapping_proportions.xlsx
+runs:
+  - species: Human
+    biomart_dataset: hsapiens_gene_ensembl
+    matrix_file: /path/to/human_counts_exon_geneid.txt
+  
+  - species: Mouse
+    biomart_dataset: mmusculus_gene_ensembl
+    matrix_file: /path/to/mouse_counts_exon_geneid.txt
+```

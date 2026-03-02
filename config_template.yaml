@@ -1,0 +1,9 @@
+output_file: /path/to/output/rRNA_mapping_proportions.xlsx
+runs:
+  - species: Human
+    biomart_dataset: hsapiens_gene_ensembl
+    matrix_file: /path/to/human_counts_exon_geneid.txt
+  
+  - species: Mouse
+    biomart_dataset: mmusculus_gene_ensembl
+    matrix_file: /path/to/mouse_counts_exon_geneid.txt
