@@ -1,4 +1,4 @@
-# RNAseq-QC
+# RNAseq-QC-rRNAproportions
 
 A scalable, configuration-driven Python tool to calculate the proportion of RNA-seq reads mapped to ribosomal RNA (rRNA) genes using featureCounts matrices.
 
